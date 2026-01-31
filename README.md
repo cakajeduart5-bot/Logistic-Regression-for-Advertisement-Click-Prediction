@@ -1,54 +1,59 @@
-# Logistic Regression: Predicting Consumer Advertisement Clicks
+# Logistic Regression: Predicting Advertisement Clicks
 
-A predictive analysis using demographic and behavioral data to determine the likelihood of a user clicking on an internet advertisement.
+Built a logistic regression model to predict whether a user will click on an online advertisement using demographic and usage-based features.
 
 ---
 
 ## Project Overview
-In this project, I developed a classification model to predict user engagement with online ads. By analyzing features such as age, income, and browsing habits, I identified the key indicators that distinguish "clickers" from "non-clickers," achieving a **90% model accuracy**.
+In this project, I developed a binary classification model to predict ad click behaviour using features such as age, area income, daily internet usage, and time spent on the site. The model achieved approximately **90% accuracy** on a held-out test set.
 
 ---
 
 ## Exploratory Data Analysis
-Before modeling, I explored the dataset to find clusters and correlations in user behavior.
+Before modelling, I explored the dataset to understand user behaviour and feature relationships.
 
 ### 1. Age Distribution
 ![Age Distribution](age_distribution.png)  
-Visualized the age range of the target audience. Most users in the dataset fall between 25 and 45 years old, providing a clear target demographic for the campaign.
+Visualised the age distribution of users, with most observations falling between 25 and 45 years old.
 
 ### 2. Area Income vs. Age
 ![Area Income vs Age](income_vs_age.png)  
-Analyzed the relationship between geography-based income and age to see if higher-income areas showed different engagement patterns.
+Examined the relationship between age and area-level income to identify potential trends in ad engagement.
 
-### 3. Usage Intensity (KDE)
+### 3. Usage Intensity
 ![Usage vs Time KDE](usage_vs_time_kde.png)  
-Used a Kernel Density Estimate (KDE) plot to visualize the density of "Time Spent on Site" vs. "Daily Internet Usage." This revealed distinct behavioral clusters among users.
+Used a kernel density plot to analyse how daily internet usage and time spent on the site differ between users.
 
 ---
 
-## Logistic Regression Modeling
-I implemented a Logistic Regression classifier to handle the binary prediction task.
+## Logistic Regression Model
+A logistic regression classifier was trained to predict whether a user clicked on an advertisement.
 
-### 4. Multivariate Analysis (Pairplot)
+### 4. Multivariate Feature Relationships
 ![Ad Click Pairplot](ad_click_pairplot.png)  
-Created a comprehensive pairplot colored by the target variable. This visualization clearly shows that clickers are separated significantly by their **Daily Internet Usage** and **Daily Time Spent on Site**, which served as the strongest predictors for the model.
+Created a pairplot coloured by the target variable to examine how features interact. Daily internet usage and time spent on the site showed the clearest separation between clickers and non-clickers.
 
-### Model Performance Metrics
-The model was evaluated using a 33% test split, yielding the following results:
-* **Precision (Class 1):** 0.95 — When the model predicts a click, it is correct 95% of the time.
-* **Recall (Class 1):** 0.85 — The model successfully identified 85% of all actual clickers.
-* **F1-Score:** 0.90 — Demonstrating a high balance between accuracy and reliability.
+### Model Performance
+The model was evaluated using a 33% test split.
+
+![Classification Report](classification_report.png)
+
+- **Precision (Click = 1): 0.95** — When the model predicts a click, it is correct 95% of the time.
+- **Recall (Click = 1): 0.85** — The model identifies 85% of actual clicks.
+- **F1-score: 0.90** — Indicates a good balance between precision and recall.
 
 ---
 
 ## Key Takeaways
-* **The "Efficiency" Paradox**: Users who spend the *most* time on the internet daily are actually *less* likely to click on ads, suggesting a higher level of "ad-blindness" in high-usage groups.
-* **Strongest Predictors**: Age and Daily Internet Usage were the most statistically significant features in determining click probability.
-* **Business Application**: With a 95% Precision rate, this model is highly effective for cost-sensitive ad campaigns where avoiding "wasted" impressions is critical.
+- Users with very high daily internet usage were less likely to click on ads, suggesting lower engagement among heavy users.
+- Age and daily internet usage were the most influential features in predicting click behaviour.
+- The model is well suited for applications where precision is important, such as cost-sensitive advertising.
 
 ---
 
 ## How to Run
 ```bash
 pip install pandas seaborn scikit-learn
+jupyter notebook "Logistic Regression Project.ipynb"
+
 jupyter notebook "Logistic Regression Project.ipynb"
